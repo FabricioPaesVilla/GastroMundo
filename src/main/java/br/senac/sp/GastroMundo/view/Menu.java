@@ -10,16 +10,13 @@ import javax.swing.ImageIcon;
  *
  * @author Casa
  */
-public class Login extends javax.swing.JFrame {
+public class Menu extends javax.swing.JFrame {
 
     /**
-     * Creates new form Login
+     * Creates new form Menu
      */
-    public Login() {
+    public Menu() {
         initComponents();
-        //ImageIcon icon = new ImageIcon("/META-INF/TelaDeLogin.jpg");
-        //icon.setImage(icon.getImage().getScaledInstance(lblBackground.getWidth(), lblBackground.getHeight(), 1));
-        
     }
 
     /**
@@ -31,47 +28,28 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblEmail = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        lblSenha = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JTextField();
-        btnEntrar = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblEmail.setText("Email:");
-        lblEmail.setToolTipText("");
-        lblEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 50, 50));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 320, 50));
-
-        lblSenha.setText("Senha:");
-        getContentPane().add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 50, 30));
-        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 320, 50));
-
-        btnEntrar.setText("Entrar");
-        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 160, 50));
-
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/TelaDeLogin.jpg"))); // NOI18N
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/TelaPrincipal.jpg"))); // NOI18N
         lblBackground.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 lblBackgroundComponentResized(evt);
             }
         });
-        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 576, 849));
+        getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1267, 724));
 
-        setSize(new java.awt.Dimension(592, 867));
+        setSize(new java.awt.Dimension(1283, 732));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblBackgroundComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_lblBackgroundComponentResized
-        ImageIcon icon = new ImageIcon(getClass().getResource("/META-INF/TelaDeLogin.jpg"));
-        icon.setImage(icon.getImage().getScaledInstance(lblBackground.getWidth(), lblBackground.getHeight(), 0));
-        lblBackground.setIcon(icon);
-        
+            ImageIcon icon = new ImageIcon(getClass().getResource("/META-INF/TelaPrincipal.jpg"));
+            icon.setImage(icon.getImage().getScaledInstance(lblBackground.getWidth(), lblBackground.getHeight(), 0));
+            lblBackground.setIcon(icon);
     }//GEN-LAST:event_lblBackgroundComponentResized
 
     /**
@@ -91,30 +69,25 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Menu().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel lblBackground;
-    private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
