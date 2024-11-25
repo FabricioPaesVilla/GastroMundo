@@ -31,29 +31,54 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSair = new javax.swing.JButton();
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
         btnEntrar = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
+        btnEntrar3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblEmail.setText("Email:");
+        btnSair.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSair.setText("Sair");
+        btnSair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 160, 50));
+
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEmail.setText("Login:");
         lblEmail.setToolTipText("");
         lblEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 50, 50));
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 320, 50));
+        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 70, 50));
 
+        txtEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 320, 50));
+
+        lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSenha.setText("Senha:");
-        getContentPane().add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 50, 30));
-        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 320, 50));
+        getContentPane().add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 60, 30));
 
+        txtSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 320, 50));
+
+        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEntrar.setText("Entrar");
-        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 160, 50));
+        btnEntrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 160, 50));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/TelaDeLogin.jpg"))); // NOI18N
         lblBackground.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -62,6 +87,16 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 576, 849));
+
+        btnEntrar3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEntrar3.setText("Entrar");
+        btnEntrar3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEntrar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrar3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEntrar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 160, 50));
 
         setSize(new java.awt.Dimension(592, 867));
         setLocationRelativeTo(null);
@@ -73,6 +108,21 @@ public class Login extends javax.swing.JFrame {
         lblBackground.setIcon(icon);
         
     }//GEN-LAST:event_lblBackgroundComponentResized
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+         /*Deixando comentado, que ao clicar em entrar, vai direto para a tela de Menu, porém depois tem que voltar aqui e fazer
+        o login voltar a funcionar */
+         
+        new Menu().setVisible(true);
+    }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void btnEntrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntrar3ActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,6 +161,8 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnEntrar3;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblSenha;
