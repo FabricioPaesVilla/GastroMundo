@@ -4,27 +4,28 @@
  */
 package br.senac.sp.GastroMundo.view;
 
+import br.senac.sp.GastroMundo.Extras.CalculaCPF;
 import br.senac.sp.GastroMundo.dao.ConnectionFactory;
 import br.senac.sp.GastroMundo.dao.LoginDAO;
+import br.senac.sp.GastroMundo.modelo.ModeloCadastro;
+import javax.swing.ImageIcon;
+import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 
 /**
  *
  * @author Casa
  */
-public class Login extends javax.swing.JFrame {
-
+public class Cadastro extends javax.swing.JFrame {
+    
     /**
-     * Creates new form Login
+     * Creates new form Cadastro
      */
-    public Login() {
+    public Cadastro() {
         initComponents();
-        //ImageIcon icon = new ImageIcon("/META-INF/TelaDeLogin.jpg");
-        //icon.setImage(icon.getImage().getScaledInstance(lblBackground.getWidth(), lblBackground.getHeight(), 1));
-        
     }
 
     /**
@@ -36,45 +37,41 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblCpf = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        lblCPF = new javax.swing.JLabel();
         txtCpf = new javax.swing.JTextField();
-        lblSenha = new javax.swing.JLabel();
+        lblSenha2 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
-        btnEntrar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
-        lblSenha1 = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCpf.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblCpf.setText("CPF: ");
-        lblCpf.setToolTipText("");
-        lblCpf.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 50, 50));
+        lblEmail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEmail.setText("Usuario: ");
+        lblEmail.setToolTipText("");
+        lblEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 80, 50));
+
+        txtNome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 320, 50));
+
+        lblCPF.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCPF.setText("CPF:");
+        getContentPane().add(lblCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 50, 30));
 
         txtCpf.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 320, 50));
+        getContentPane().add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 320, 50));
 
-        lblSenha.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSenha.setText("Caso não tenha um login, faça seu cadastro:");
-        getContentPane().add(lblSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 380, 80));
+        lblSenha2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSenha2.setText("Senha:");
+        getContentPane().add(lblSenha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 60, 30));
 
         txtSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 320, 50));
-
-        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEntrar.setText("Entrar");
-        btnEntrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 160, 50));
+        getContentPane().add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 320, 50));
 
         btnCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCadastrar.setText("Cadastrar");
@@ -84,11 +81,7 @@ public class Login extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 560, 160, 50));
-
-        lblSenha1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSenha1.setText("Senha:");
-        getContentPane().add(lblSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 60, 30));
+        getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 500, 160, 50));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/TelaDeLogin.jpg"))); // NOI18N
         lblBackground.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -106,32 +99,33 @@ public class Login extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getResource("/META-INF/TelaDeLogin.jpg"));
         icon.setImage(icon.getImage().getScaledInstance(lblBackground.getWidth(), lblBackground.getHeight(), 0));
         lblBackground.setIcon(icon);
-        
     }//GEN-LAST:event_lblBackgroundComponentResized
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-         /*Deixando comentado, que ao clicar em entrar, vai direto para a tela de Menu, porém depois tem que voltar aqui e fazer
-        o login voltar a funcionar */
-        LoginDAO conexao = new LoginDAO(ConnectionFactory.getConexao());
-        String c, s;
-        c = txtCpf.getText();
-        s = txtSenha.getText();
-        
-        boolean a ;
-        try {
-            a = conexao.buscar(c, s);
-         if(a == true){
-            new Menu().setVisible(true);
-         }else{
-         }
-        } catch (SQLException ex) {
-            //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_btnEntrarActionPerformed
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        new Cadastro().setVisible(true);
+        ModeloCadastro cadastro = new ModeloCadastro();
+        
+        String cpf = txtCpf.getText();
+        CalculaCPF a = new CalculaCPF();
+        if(a.validarCPF(cpf)== false){
+            
+        }else{
+            cadastro.setNome(txtNome.getText());
+            cadastro.setSenha(txtSenha.getText());
+            cadastro.setCpf(cpf);
+            try {
+                LoginDAO b = new LoginDAO(ConnectionFactory.getConexao());
+                b.inserir(cadastro);
+            } catch (SQLException ex) {
+                //Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
+            }
+            txtNome.setText("");
+            txtSenha.setText("");
+            txtCpf.setText("");
+        }
+        
+        new Menu().setVisible(true);
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
@@ -151,32 +145,32 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Cadastro().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel lblBackground;
-    private javax.swing.JLabel lblCpf;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JLabel lblSenha1;
+    private javax.swing.JLabel lblCPF;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblSenha2;
     private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
