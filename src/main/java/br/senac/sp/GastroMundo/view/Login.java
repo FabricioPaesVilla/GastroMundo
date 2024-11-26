@@ -116,13 +116,14 @@ public class Login extends javax.swing.JFrame {
         String c, s;
         c = txtCpf.getText();
         s = txtSenha.getText();
-        
         boolean a ;
         try {
             a = conexao.buscar(c, s);
+            System.out.println(a);
          if(a == true){
             new Menu().setVisible(true);
          }else{
+            new Cadastro().setVisible(true);
          }
         } catch (SQLException ex) {
             //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

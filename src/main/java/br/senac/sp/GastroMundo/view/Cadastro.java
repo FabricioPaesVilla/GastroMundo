@@ -107,7 +107,7 @@ public class Cadastro extends javax.swing.JFrame {
         String cpf = txtCpf.getText();
         CalculaCPF a = new CalculaCPF();
         if(a.validarCPF(cpf)== false){
-            
+            new Login().setVisible(true);
         }else{
             cadastro.setNome(txtNome.getText());
             cadastro.setSenha(txtSenha.getText());
@@ -115,6 +115,7 @@ public class Cadastro extends javax.swing.JFrame {
             try {
                 LoginDAO b = new LoginDAO(ConnectionFactory.getConexao());
                 b.inserir(cadastro);
+                new Menu().setVisible(true);
             } catch (SQLException ex) {
                 //Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
                 ex.printStackTrace();
@@ -123,8 +124,6 @@ public class Cadastro extends javax.swing.JFrame {
             txtSenha.setText("");
             txtCpf.setText("");
         }
-        
-        new Menu().setVisible(true);
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

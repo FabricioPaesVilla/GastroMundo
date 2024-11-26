@@ -37,12 +37,15 @@ public class LoginDAO {
 
     public Boolean buscar(String cpf, String senha) throws SQLException {
         
-        sql = "select * from lista WHERE cpf = ? AND senha = ?";
+        sql = "SELECT * FROM login WHERE cpf = ? AND senha = ?";
         stmt = conexao.prepareStatement(sql);
         stmt.setString(1, cpf);
-        stmt.setString(2, senha);
+        stmt.setString(2,senha);
         ResultSet rs = stmt.executeQuery();
-        return rs.next();
+        boolean a = rs.next();
+        stmt.close();
+        return a;
+        
         /*
         ModeloCadastro cadastro = new ModeloCadastro();
         cadastro.setCpf(rs.getString("cpf"));
