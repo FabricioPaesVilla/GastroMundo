@@ -28,19 +28,25 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnEntrar = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        mnuBrasil = new javax.swing.JMenuItem();
-        mnuItalia = new javax.swing.JMenuItem();
-        mnuMexico = new javax.swing.JMenuItem();
-        mnuJapao = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnEntrar.setText("Pedidos");
+        btnEntrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 270, 100));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/TelaPrincipal.jpg"))); // NOI18N
         lblBackground.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -51,43 +57,6 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1267, 724));
 
         Menu.setText("Menu");
-
-        jMenu3.setText("Cardápios");
-
-        mnuBrasil.setText("Comida Brasileira");
-        mnuBrasil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuBrasilActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnuBrasil);
-
-        mnuItalia.setText("Comida Italiana");
-        mnuItalia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuItaliaActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnuItalia);
-
-        mnuMexico.setText("Comida Mexicana");
-        mnuMexico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuMexicoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnuMexico);
-
-        mnuJapao.setText("Comida Japonesa");
-        mnuJapao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuJapaoActionPerformed(evt);
-            }
-        });
-        jMenu3.add(mnuJapao);
-
-        Menu.add(jMenu3);
-
         jMenuBar1.add(Menu);
 
         jMenu2.setText("Ajuda");
@@ -105,21 +74,9 @@ public class Menu extends javax.swing.JFrame {
             lblBackground.setIcon(icon);
     }//GEN-LAST:event_lblBackgroundComponentResized
 
-    private void mnuBrasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuBrasilActionPerformed
-        new ComidaBrasileira().setVisible(true);
-    }//GEN-LAST:event_mnuBrasilActionPerformed
-
-    private void mnuItaliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuItaliaActionPerformed
-       new ComidaItaliana().setVisible(true);
-    }//GEN-LAST:event_mnuItaliaActionPerformed
-
-    private void mnuMexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMexicoActionPerformed
-        new ComidaMexicana().setVisible(true);
-    }//GEN-LAST:event_mnuMexicoActionPerformed
-
-    private void mnuJapaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuJapaoActionPerformed
-        new ComidaJaponesa().setVisible(true);
-    }//GEN-LAST:event_mnuJapaoActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        new Pedidos().setVisible(true);
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,13 +115,9 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Menu;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBackground;
-    private javax.swing.JMenuItem mnuBrasil;
-    private javax.swing.JMenuItem mnuItalia;
-    private javax.swing.JMenuItem mnuJapao;
-    private javax.swing.JMenuItem mnuMexico;
     // End of variables declaration//GEN-END:variables
 }

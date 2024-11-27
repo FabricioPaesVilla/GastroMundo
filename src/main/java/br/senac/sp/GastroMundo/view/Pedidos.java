@@ -4,16 +4,37 @@
  */
 package br.senac.sp.GastroMundo.view;
 
+import br.senac.sp.GastroMundo.Extras.Tabela;
+import br.senac.sp.GastroMundo.dao.CarrinhoDAO;
+import br.senac.sp.GastroMundo.dao.ConnectionFactory;
+import br.senac.sp.GastroMundo.modelo.ModeloCarrinho;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author henri
  */
 public class Pedidos extends javax.swing.JFrame {
-
+    private double s, f, n, p,id;
+    private DefaultTableModel tblModelo;
+    private Tabela t;
+    private List<ModeloCarrinho> lista;
     /**
      * Creates new form Pedidos
      */
     public Pedidos() {
+        Random r = new Random();
+        id = r.nextInt(1000);
+                 //tblModelo = (DefaultTableModel) tblCarrinho.getModel();
+        lista = new ArrayList<ModeloCarrinho>();
+        t = new Tabela(lista);
         initComponents();
     }
 
@@ -38,14 +59,14 @@ public class Pedidos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnEnviarPedido1 = new javax.swing.JButton();
         btnEnviarPedido = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCarrinho = new javax.swing.JTable(t);
         jblfull = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jlbPizza.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -55,6 +76,11 @@ public class Pedidos extends javax.swing.JFrame {
 
         btnPizza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/NewPizza.jpg"))); // NOI18N
         btnPizza.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPizza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPizzaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPizza);
         btnPizza.setBounds(100, 100, 130, 90);
 
@@ -65,6 +91,11 @@ public class Pedidos extends javax.swing.JFrame {
 
         btnNachos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/New  Nachos.jpg"))); // NOI18N
         btnNachos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnNachos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNachosActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnNachos);
         btnNachos.setBounds(250, 100, 130, 90);
 
@@ -90,6 +121,11 @@ public class Pedidos extends javax.swing.JFrame {
 
         btnFeijao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/New Feijoada.jpg"))); // NOI18N
         btnFeijao.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnFeijao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeijaoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnFeijao);
         btnFeijao.setBounds(410, 100, 130, 90);
 
@@ -113,17 +149,6 @@ public class Pedidos extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(410, 200, 130, 20);
 
-        btnEnviarPedido1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnEnviarPedido1.setText("Alterar");
-        btnEnviarPedido1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEnviarPedido1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnviarPedido1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEnviarPedido1);
-        btnEnviarPedido1.setBounds(310, 660, 120, 30);
-
         btnEnviarPedido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEnviarPedido.setText("Enviar");
         btnEnviarPedido.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -133,16 +158,21 @@ public class Pedidos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEnviarPedido);
-        btnEnviarPedido.setBounds(150, 660, 120, 30);
+        btnEnviarPedido.setBounds(190, 660, 160, 50);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Excluir");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jButton2);
-        jButton2.setBounds(460, 660, 120, 30);
+        btnExcluir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(390, 660, 160, 50);
 
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCarrinho.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -153,10 +183,17 @@ public class Pedidos extends javax.swing.JFrame {
                 "ID Pedido", "Prato", "Qtd", "Valor"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblCarrinho.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblCarrinho.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblCarrinho.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                tblCarrinhoComponentAdded(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCarrinho);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(140, 250, 456, 406);
+        jScrollPane1.setBounds(140, 250, 452, 406);
 
         jblfull.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/Pedidos GastroMundo (1).png"))); // NOI18N
         getContentPane().add(jblfull);
@@ -167,16 +204,136 @@ public class Pedidos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSushiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSushiActionPerformed
-        // TODO add your handling code here:
+        s ++;
+        //tblModelo.setRowCount(0);
+        ModeloCarrinho su = new ModeloCarrinho();
+        su.setId(String.valueOf(id));
+        su.setPrato("Sushi");
+        su.setQtd(s);
+        Double valor = 35 * s;   
+        su.setValor(valor);
+        lista.add(0, su);
+        
+        tblCarrinho.setValueAt(id, 0, 0);
+        tblCarrinho.setValueAt("Sushi", 0, 1);
+        tblCarrinho.setValueAt(s, 0, 2);
+        tblCarrinho.setValueAt(valor, 0, 3);
+        
+        
+        //tblModelo.add
+        
+        
+        
     }//GEN-LAST:event_btnSushiActionPerformed
 
     private void btnEnviarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarPedidoActionPerformed
         // TODO add your handling code here:
+        s = 0;
+        f = 0;
+        n = 0;
+        p = 0;
+        ModeloCarrinho carrinho = new ModeloCarrinho();
+        CarrinhoDAO ca = new CarrinhoDAO(ConnectionFactory.getConexao());
+        try {
+            ca.inserir(lista.get(0));
+            ca.inserir(lista.get(1));
+            ca.inserir(lista.get(2));
+            ca.inserir(lista.get(3));
+        } catch (SQLException ex) {
+            //Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+        new Pagamento().setVisible(true);
     }//GEN-LAST:event_btnEnviarPedidoActionPerformed
 
-    private void btnEnviarPedido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarPedido1ActionPerformed
+    private void btnPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPizzaActionPerformed
+        p++;
+        
+        ModeloCarrinho pi = new ModeloCarrinho();
+        pi.setId(String.valueOf(id));
+        pi.setPrato("pizza");
+        pi.setQtd(p);
+        Double valor = 40 * p;   
+        pi.setValor(valor);
+        lista.add(1, pi);
+        
+        tblCarrinho.setValueAt(id, 1, 0);
+        tblCarrinho.setValueAt("pizza", 1, 1);
+        tblCarrinho.setValueAt(p, 1, 2);
+        tblCarrinho.setValueAt(valor, 1, 3);
+        
+        
+    }//GEN-LAST:event_btnPizzaActionPerformed
+
+    private void btnFeijaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeijaoActionPerformed
+        f++;
+        
+        ModeloCarrinho fe = new ModeloCarrinho();
+        fe.setId(String.valueOf(id));
+        fe.setPrato("feijoada");
+        fe.setQtd(f);
+        Double valor = 40 * f;   
+        fe.setValor(valor);
+        lista.add(2, fe);
+        
+        tblCarrinho.setValueAt(id, 2, 0);
+        tblCarrinho.setValueAt("feijoada", 2, 1);
+        tblCarrinho.setValueAt(f, 2, 2);
+        tblCarrinho.setValueAt(valor, 2, 3);
+        
+        
+    }//GEN-LAST:event_btnFeijaoActionPerformed
+
+    private void btnNachosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNachosActionPerformed
+        n++;
+        
+        ModeloCarrinho na = new ModeloCarrinho();
+        na.setId(String.valueOf(id));
+        na.setPrato("nachos");
+        na.setQtd(n);
+        Double valor = 40 * n;   
+        na.setValor(valor);
+        lista.add(3, na);
+        
+        tblCarrinho.setValueAt(id, 3, 0);
+        tblCarrinho.setValueAt("nachos", 3, 1);
+        tblCarrinho.setValueAt(n, 3, 2);
+        tblCarrinho.setValueAt(valor, 3, 3);
+        
+        
+    }//GEN-LAST:event_btnNachosActionPerformed
+
+    private void tblCarrinhoComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_tblCarrinhoComponentAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEnviarPedido1ActionPerformed
+        
+    }//GEN-LAST:event_tblCarrinhoComponentAdded
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        lista.remove(0);
+        lista.remove(1);
+        lista.remove(2);
+        lista.remove(3);
+        s = 0;
+        f = 0;
+        n = 0;
+        p = 0;
+        tblCarrinho.setValueAt("", 0, 0);
+        tblCarrinho.setValueAt("", 0, 1);
+        tblCarrinho.setValueAt("", 0, 2);
+        tblCarrinho.setValueAt("", 0, 3);
+        tblCarrinho.setValueAt("", 1, 0);
+        tblCarrinho.setValueAt("", 1, 1);
+        tblCarrinho.setValueAt("", 1, 2);
+        tblCarrinho.setValueAt("", 1, 3);
+        tblCarrinho.setValueAt("", 2, 0);
+        tblCarrinho.setValueAt("", 2, 1);
+        tblCarrinho.setValueAt("", 2, 2);
+        tblCarrinho.setValueAt("", 2, 3);
+        tblCarrinho.setValueAt("", 3, 0);
+        tblCarrinho.setValueAt("", 3, 1);
+        tblCarrinho.setValueAt("", 3, 2);
+        tblCarrinho.setValueAt("", 3, 3);
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,22 +372,21 @@ public class Pedidos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviarPedido;
-    private javax.swing.JButton btnEnviarPedido1;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnFeijao;
     private javax.swing.JButton btnNachos;
     private javax.swing.JButton btnPizza;
     private javax.swing.JButton btnSushi;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel jblfull;
     private javax.swing.JLabel jlbNachos;
     private javax.swing.JLabel jlbPizza;
     private javax.swing.JLabel jlbPizza1;
     private javax.swing.JLabel jlbPizza3;
+    private javax.swing.JTable tblCarrinho;
     // End of variables declaration//GEN-END:variables
 }

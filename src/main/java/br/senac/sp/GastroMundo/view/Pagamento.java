@@ -4,17 +4,84 @@
  */
 package br.senac.sp.GastroMundo.view;
 
+import br.senac.sp.GastroMundo.Extras.Tabela;
+import br.senac.sp.GastroMundo.dao.CarrinhoDAO;
+import br.senac.sp.GastroMundo.dao.ConnectionFactory;
+import br.senac.sp.GastroMundo.modelo.ModeloCarrinho;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author henri
  */
 public class Pagamento extends javax.swing.JFrame {
-
+    private Tabela t;
+    private double total;
     /**
      * Creates new form Pagamento
      */
     public Pagamento() {
         initComponents();
+        listar();
+    }
+
+    public void listar() {
+        //DefaultTableModel tblModelo = (DefaultTableModel) tblCarrinho.getModel();
+        //tblModelo.setRowCount(0);
+        CarrinhoDAO conexao = new CarrinhoDAO(ConnectionFactory.getConexao());
+        List<ModeloCarrinho> lista = new ArrayList<ModeloCarrinho>();
+        try {
+            lista = conexao.listar();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Pagamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            t = new Tabela(lista);
+            //tblCarrinho.setValueAt(t, 0, 0);
+            //tblCarrinho.setValueAt("aa", 0, 1);
+            String z;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 1; j++) {
+                    //z = String.valueOf(t.getValueAt(i, j));
+                    //tblCarrinho.setValueAt(t.getValueAt(i, j), i, j);
+                    
+                }
+            
+            }
+            
+            for (int i = 0; i < lista.size(); i++) {
+                tblCarrinho.setValueAt(lista.get(i).getId(), i, 0);  
+            }
+            for (int i = 0; i < lista.size(); i++) {
+                tblCarrinho.setValueAt(lista.get(i).getPrato(), i, 1);  
+            }
+            for (int i = 0; i < lista.size(); i++) {
+                tblCarrinho.setValueAt(lista.get(i).getQtd(), i, 2);  
+            }
+            for (int i = 0; i < lista.size(); i++) {
+                tblCarrinho.setValueAt(lista.get(i).getValor(), i, 3);  
+            }
+            
+            total = 0;
+            for (int i = 0; i < lista.size(); i++) {
+                total += lista.get(i).getValor();
+            }
+            lblPix.setText(String.valueOf(total));
+        
+        
+        /*
+        lista.get(0).getId();
+        lista.get(0).getPrato();
+        lista.get(0).getQtd();
+        lista.get(0).getValor();
+        */
+        //tblCarrinho.add(a);
+
     }
 
     /**
@@ -26,38 +93,75 @@ public class Pagamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        lblPix = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        btnEnviar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblCarrinho = new javax.swing.JTable(t);
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("PIX:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(170, 470, 60, 20);
+        lblPix.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        getContentPane().add(lblPix);
+        lblPix.setBounds(210, 470, 60, 20);
 
-        jTable2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("Endereço:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(280, 500, 90, 20);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setText("PIX:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(170, 470, 60, 20);
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(380, 500, 290, 22);
+
+        btnEnviar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnEnviar.setText("Enviar");
+        btnEnviar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEnviar);
+        btnEnviar.setBounds(330, 540, 210, 60);
+
+        tblCarrinho.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Pedido", "Prato", "Qtd", "Valor", "Total"
+                "ID Pedido", "Prato", "Qtd", "Valor"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblCarrinho.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblCarrinho.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(tblCarrinho);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(170, 100, 430, 360);
+        jScrollPane2.setBounds(180, 100, 430, 360);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/qrcode.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -74,11 +178,21 @@ public class Pagamento extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(230, 480, 200, 26);
+        jTextField1.setBounds(230, 480, 200, 22);
 
         setSize(new java.awt.Dimension(771, 980));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        CarrinhoDAO ca = new CarrinhoDAO(ConnectionFactory.getConexao());
+        
+        try {
+            ca.excuirTabela();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,18 +224,24 @@ public class Pagamento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 new Pagamento().setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblPix;
+    private javax.swing.JTable tblCarrinho;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,7 +45,7 @@ public class Login extends javax.swing.JFrame {
         lblSenha1 = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,7 +123,7 @@ public class Login extends javax.swing.JFrame {
          if(a == true){
             new Menu().setVisible(true);
          }else{
-            new Cadastro().setVisible(true);
+            
          }
         } catch (SQLException ex) {
             //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

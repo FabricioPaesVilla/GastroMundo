@@ -21,7 +21,6 @@ public class LoginDAO {
     private PreparedStatement stmt;
 
     public LoginDAO(Connection conexao) {
-        
         this.conexao = conexao;
     }
 
